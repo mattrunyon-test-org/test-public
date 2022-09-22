@@ -9,4 +9,4 @@ on:
 
 jobs:
   create-docs-ticket:
-    uses: mattrunyon-test-org/.github/workflows/test-issue.yml
+    uses: mattrunyon-test-org/.github/workflows/test-issue.yml@main
