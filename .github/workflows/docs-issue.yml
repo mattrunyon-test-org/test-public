@@ -1,0 +1,12 @@
+name: Create documentation ticket
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - closed
+
+jobs:
+  create-docs-ticket:
+    uses: mattrunyon-test-org/.github/workflows/test-issue.yml
