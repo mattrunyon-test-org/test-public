@@ -18,7 +18,7 @@ jobs:
         with:
           github-token: ${{ secrets.ISSUE_PAT }}
           script: |
-            const { html_url } = await github.rest.issues.create({
+            const issue = await github.rest.issues.create({
               owner: context.repo.owner,
               repo: 'test-private',
               title: context.payload.pull_request.title,
@@ -27,6 +27,8 @@ jobs:
                 context.payload.pull_request.body,
               assignees: [context.payload.pull_request.user.login]
             });
+
+            console.log(issue);
 
             github.rest.issues.createComment({
               issue_number: context.issue.number,
