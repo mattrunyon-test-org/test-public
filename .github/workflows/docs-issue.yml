@@ -22,7 +22,7 @@ jobs:
               owner: context.repo.owner,
               repo: 'test-private',
               title: context.payload.pull_request.title,
-              body: `_This issue was auto-generated based on ${context.payload.pull_request.html_url} and assigned to its creator._\n\n` +
+              body: `_Auto-generated from ${context.payload.pull_request.html_url} and assigned to its creator._\n\n` +
                 '## Pull Request Body\n\n' +
                 context.payload.pull_request.body,
               assignees: [context.payload.pull_request.user.login]
