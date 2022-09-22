@@ -19,8 +19,8 @@ jobs:
           github-token: ${{ secrets.ISSUE_PAT }}
           script: |
             const { html_url } = await github.rest.issues.create({
-              owner: 'deephaven',
-              repo: 'deephaven.io',
+              owner: context.repo.owner,
+              repo: 'test-private',
               title: context.payload.pull_request.title,
               body: `This issue was auto-generated base on ${context.payload.pull_request.html_url} and assigned to its creator.\n\n` +
                 'The pull request body is copied below.\n\n' +
