@@ -9,4 +9,28 @@ on:
 
 jobs:
   create-docs-ticket:
-    uses: mattrunyon-test-org/.github/workflows/test-issue.yml@main
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Create Issue
+        id: create-issue
+        if: github.event.pull_request.merged && contains(github.event.pull_request.labels.*.name, 'DocumentationNeeded')
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.ISSUE_PAT }}
+          script: |
+            const { html_url } = await github.rest.issues.create({
+              owner: 'deephaven',
+              repo: 'deephaven.io',
+              title: context.payload.pull_request.title,
+              body: `This issue was auto-generated base on ${context.payload.pull_request.html_url} and assigned to its creator.\n\n` +
+                'The pull request body is copied below.\n\n' +
+                context.payload.pull_request.body,
+              assignees: [context.payload.pull_request.user.login]
+            });
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `Labels indicate documentation is required. An issue for documentation has been opened at ${html_url}`
+            })
