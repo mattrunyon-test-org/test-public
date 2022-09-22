@@ -30,6 +30,8 @@ jobs:
 
             console.log(issue);
 
+            const html_url = 'test';
+
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
