@@ -28,13 +28,9 @@ jobs:
               assignees: [context.payload.pull_request.user.login]
             });
 
-            console.log(issue);
-
-            const html_url = 'test';
-
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `Labels indicate documentation is required. An issue for documentation has been opened at ${html_url}`
+              body: `Labels indicate documentation is required. An issue for documentation has been opened at ${issue.data.html_url}`
             })
