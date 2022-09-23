@@ -23,7 +23,7 @@ jobs:
               repo: 'test-private',
               title: context.payload.pull_request.title,
               body: `_This issue was auto-generated_\n\n` +
-                `PR: ${contexet.payload.pull_request.html_url}\n` +
+                `PR: ${context.payload.pull_request.html_url}\n` +
                 `Author: ${context.payload.pull_request.user.login}\n\n` +
                 '## Original PR Body\n\n' +
                 context.payload.pull_request.body,
