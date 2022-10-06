@@ -9,11 +9,11 @@ on:
 
 jobs:
   create-docs-ticket:
+    if: github.event.pull_request.merged && contains(github.event.pull_request.labels.*.name, 'DocumentationNeeded')
     runs-on: ubuntu-22.04
     steps:
       - name: Create Issue
         id: create-issue
-        if: github.event.pull_request.merged && contains(github.event.pull_request.labels.*.name, 'DocumentationNeeded')
         uses: actions/github-script@v6
         with:
           github-token: ${{ secrets.ISSUE_PAT }}
