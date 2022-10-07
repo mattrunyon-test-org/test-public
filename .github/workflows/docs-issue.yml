@@ -12,6 +12,7 @@ jobs:
     if: github.event.pull_request.merged && contains(github.event.pull_request.labels.*.name, 'DocumentationNeeded')
     runs-on: ubuntu-22.04
     steps:
+      - uses: actions/checkout@v2
       - name: Create Issue
         id: create-issue
         uses: actions/github-script@v6
