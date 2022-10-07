@@ -19,5 +19,5 @@ jobs:
         with:
           github-token: ${{ secrets.ISSUE_PAT }}
           script: |
-            const script = require('./docs-issue.js');
+            const script = require('.github/workflows/docs-issue.js');
             await script({github, context});
