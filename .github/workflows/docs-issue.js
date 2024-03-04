@@ -1,6 +1,6 @@
 module.exports = async ({ github, context }) => {
-  const ISSUE_REPO_NAME = "test-private";
-  const ISSUE_TYPES = ["how-to", "conceptual", "reference", "blog"];
+  const ISSUE_REPO_NAME = "test-public-2";
+  const ISSUE_TYPES = ["Community"];
 
   const body =
     `_This issue was auto-generated_\n\n` +
