@@ -16,7 +16,6 @@ jobs:
         id: create-issue
         uses: actions/github-script@v6
         with:
-          github-token: ${{ secrets.ISSUE_PAT }}
           script: |
             const script = require('.github/workflows/docs-issue.js');
             await script({github, context});
