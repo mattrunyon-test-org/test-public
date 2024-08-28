@@ -1,7 +1,7 @@
 name: 'Add reviewer'
 
 on:
-  pull_request_target:
+  pull_request:
     types:
       - opened
       - synchronize
@@ -35,6 +35,8 @@ jobs:
               repo: context.repo.repo,
               pull_number: context.issue.number
             });
+
+            console.log(typeof reviews, Array.isArray(reviews), reviews);
 
             const isReviewed = reviews?.some(review => review.user.login === reviewer);
 
