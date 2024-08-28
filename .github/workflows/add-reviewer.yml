@@ -28,9 +28,7 @@ jobs:
               pull_number: context.issue.number
             });
 
-            console.log(typeof pendingReviewers, pendingReviewers);
-
-            const isPending = pendingReviewers.users?.some(({ login }) => login === reviewer);
+            const isPending = pendingReviewers.data?.users?.some(({ login }) => login === reviewer);
 
             const reviews = await github.rest.pulls.listReviews({
               owner: context.repo.owner,
@@ -38,9 +36,7 @@ jobs:
               pull_number: context.issue.number
             });
 
-            console.log(typeof reviews, Array.isArray(reviews), reviews);
-
-            const isReviewed = reviews?.some(review => review.user.login === reviewer);
+            const isReviewed = reviews.data?.some(review => review.user.login === reviewer);
 
             if (!isPending && !isReviewed) {
               github.rest.pulls.requestReviewers({
