@@ -28,6 +28,8 @@ jobs:
               pull_number: context.issue.number
             });
 
+            console.log(typeof pendingReviewers, pendingReviewers);
+
             const isPending = pendingReviewers.users?.some(({ login }) => login === reviewer);
 
             const reviews = await github.rest.pulls.listReviews({
